@@ -7,12 +7,12 @@ import Leader from './Leader'
 import { ScrollView } from 'react-native-gesture-handler'
 import { LinearGradient } from 'expo-linear-gradient'
 
-
 const LeaderBoard = () => {
     const navigation = useNavigation();
     const [count, setCount] = useState('');
     const [cards, setCards] = useState([]);
     const [productInfo, setProductInfo] = useState([]);
+    const [sus, setsus] = useState('');
 
     useEffect(() => {
         axios.get("http://localhost:5001/count")
@@ -34,20 +34,35 @@ const LeaderBoard = () => {
     }, []);
 
     useEffect(() => {
-        const sortedProductInfo = [...productInfo].sort((a, b) => b.sus - a.sus); // Sort productInfo based on sus in descending order
+        const generateCardsAndFetchSus = async () => {
 
-        const generatedCards = sortedProductInfo.slice(0, count).map((item, index) => (
-            <Pressable>
-                <Leader title={item.Title} />
-            </Pressable>
-        ));
-        setCards(generatedCards);
+            const sortedProductInfo = [...productInfo].sort((a, b) => b.sus - a.sus);
+
+            const generatedCards = await Promise.all(sortedProductInfo.slice(0, count).map(async (item, index) => {
+                try {
+                    const res = await axios.get("http://localhost:5001/sustainableindex?query=" + item.Title);
+                    const sus = res.data;
+                    return (
+                        <Pressable key={index} onPress={() => navigation.navigate('ProductDetail', { productId: item.id })}>
+                            <Leader title={item.Title} sustainabilityIndex={sus} />
+                        </Pressable>
+                    );
+                } catch (error) {
+                    console.log("Error:", error);
+                    return null;
+                }
+            }));
+            setCards(generatedCards);
+        };
+
+        generateCardsAndFetchSus();
     }, [count, productInfo, navigation]);
 
     return (
         <LinearGradient colors={["#0c4cb4", "#c86ce4"]} style={styles.container}>
             <ScrollView>
-                <Text>LeaderBoard</Text>
+                <Text style={{ textAlign: 'center', color: "white", fontSize: 30, fontWeight: 'bold', marginBottom: 10 }}>LEADERBOARD</Text>
+
                 <View>
                     {cards}
                 </View>
@@ -66,4 +81,4 @@ const styles = StyleSheet.create({
         paddingTop: 50,
         paddingLeft: 20
     },
-})
+});
