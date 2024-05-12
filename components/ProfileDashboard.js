@@ -5,7 +5,14 @@ import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import UserCard from './UserCard';
 import { AntDesign } from '@expo/vector-icons';
-import Svg, { Line } from 'react-native-svg'
+import {
+    LineChart,
+    BarChart,
+    PieChart,
+    ProgressChart,
+    ContributionGraph,
+    StackedBarChart
+} from "react-native-chart-kit";
 
 const ProfileDashboard = () => {
     const navigation = useNavigation();
@@ -54,6 +61,7 @@ const ProfileDashboard = () => {
             <Pressable style={styles.addButton} onPress={() => navigation.navigate('SocialImpactScreen')}>
                 <AntDesign name="plus" size={24} color="black" />
             </Pressable>
+
         </LinearGradient>
     );
 }
