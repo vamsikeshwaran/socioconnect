@@ -4,27 +4,27 @@
 
 We’ve built an online platform that connects social impact projects with potential investors, promoting sustainability and change.
 
-# Photos of the app
+## Photos of the app
 
-## Home Screen
+### Home Screen
 ![Screenshot](images/im2.jpeg)
 
-## Login Page
+### Login Page
 ![Screenshot](images/im7.jpeg)
 
-## Profile Dashboard
+### Profile Dashboard
 ![Screenshot](images/im6.jpeg)
 
-## Chat Screen
+### Chat Screen
 ![Screenshot](images/im4.jpeg)
 
-## AI for marketting
+### AI for marketting
 ![Screenshot](images/im8.jpeg)
 
-## Upload page
+### Upload page
 ![Screenshot](images/im3.jpeg)
 
-# Prerequisites
+## Prerequisites
 
 * Install react native
 * Install node
@@ -32,7 +32,7 @@ We’ve built an online platform that connects social impact projects with poten
 * Install Express
 * Use Iphone SE(3rd Generation Simulator)
 
-# Procedure to run this application
+## Procedure to run this application
 
 1. Clone the repository
 ```
