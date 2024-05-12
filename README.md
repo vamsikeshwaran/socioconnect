@@ -4,26 +4,6 @@
 
 We’ve built an online platform that connects social impact projects with potential investors, promoting sustainability and change.
 
-## Photos of the app
-
-### Home Screen
-![Screenshot](images/im2.jpeg)
-
-### Login Page
-![Screenshot](images/im7.jpeg)
-
-### Profile Dashboard
-![Screenshot](images/im6.jpeg)
-
-### Chat Screen
-![Screenshot](images/im4.jpeg)
-
-### AI for marketting
-![Screenshot](images/im8.jpeg)
-
-### Upload page
-![Screenshot](images/im3.jpeg)
-
 ## Prerequisites
 
 * Install react native
