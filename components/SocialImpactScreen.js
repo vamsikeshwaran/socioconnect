@@ -24,6 +24,7 @@ const SocialImpactScreen = () => {
     const [demo, setdemo] = useState('')
     const [retail, setretail] = useState('')
     const [equity, setequity] = useState('')
+    const [Invested, setInvested] = useState()
 
     function handlesumbit() {
         const userData = {
@@ -32,7 +33,8 @@ const SocialImpactScreen = () => {
             Information: info,
             Demo: demo,
             Retail: retail,
-            Equity: equity
+            Equity: equity,
+            InvestedAmount: Invested
         }
         axios.post("http://localhost:5001/product", userData)
             .then(res => {
@@ -61,6 +63,9 @@ const SocialImpactScreen = () => {
     }
     function handleequity(enteredtext) {
         setequity(enteredtext)
+    }
+    function handleInvested(enteredtext) {
+        setInvested(enteredtext)
     }
 
     const selectDoc = async () => {
@@ -120,53 +125,6 @@ const SocialImpactScreen = () => {
             setUploading(false);
         }
     };
-    const uploadVideo = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-        });
-
-        if (!result.cancelled) {
-            setImage(result.assets[0].uri);
-        }
-
-        setUploading(true);
-
-        try {
-            if (!result.cancelled) {
-                const { uri } = result.assets[0];
-                if (!uri) {
-                    throw new Error('Image URI is not available.');
-                }
-
-                const fileInfo = await FileSystem.getInfoAsync(uri);
-                if (!fileInfo.exists) {
-                    throw new Error('File does not exist.');
-                }
-
-                const response = await fetch(uri);
-                const blob = await response.blob();
-
-                const filename = `${Date.now()}`;
-
-                const ref = firebase.storage().ref().child(filename);
-                await ref.put(blob);
-
-                setUploading(false);
-                Alert.alert('Photo Uploaded!!');
-                setImage(null);
-                const downloadURL = await ref.getDownloadURL();
-                setdemo(downloadURL);
-            }
-        } catch (error) {
-            console.error('Error while uploading:', error.message);
-            setUploading(false);
-        }
-    };
-
-
 
     const uploadDocument = async () => {
         if (!document) {
@@ -220,7 +178,7 @@ const SocialImpactScreen = () => {
                 <Text style={{ fontWeight: 'bold', marginLeft: 18, marginBottom: 12 }}>OR</Text>
                 <View style={styles.line} />
             </View>
-            <Text style={{ textAlign: 'center', color: "white", fontSize: 30, fontWeight: 'bold', marginBottom: 20 }}>CLIENT FORM</Text>
+            <Text style={{ textAlign: 'center', color: "white", fontSize: 30, fontWeight: 'bold', marginBottom: 20, textDecorationLine: 'underline', }}>CLIENT FORM</Text>
             <ScrollView>
 
 
@@ -238,11 +196,15 @@ const SocialImpactScreen = () => {
                 </TextInput>
                 <Text style={styles.innertext}>Retail Price</Text>
                 <TextInput placeholder="Retail Price" style={styles.input} onChangeText={handleretail}>
-                    <Text></Text>
+                    <Text>{retail}</Text>
                 </TextInput>
                 <Text style={styles.innertext}>Equity</Text>
                 <TextInput placeholder="Retail Price" style={styles.input} onChangeText={handleequity}>
-                    <Text></Text>
+                    <Text>{equity}</Text>
+                </TextInput>
+                <Text style={styles.innertext}>Invested Amount</Text>
+                <TextInput placeholder="Retail Price" style={styles.input} onChangeText={handleInvested}>
+                    <Text>{Invested}</Text>
                 </TextInput>
                 <View style={{ alignItems: 'center', marginTo: 10 }}>
                     <TouchableOpacity style={[styles.button, styles.uploadButton]} onPress={uploadMedia}>
@@ -250,8 +212,9 @@ const SocialImpactScreen = () => {
                     </TouchableOpacity>
                     {uploading === true && <ActivityIndicator size="large" color="grey" />}
                 </View>
-                <PrimaryButton style={{ marginBottom: 20, backgroundColor: '#28a745' }} onPress={handlesumbit}>SUBMIT</PrimaryButton>
-
+                <View style={{ alignItems: 'center' }}>
+                    <PrimaryButton style={{ marginBottom: 20, backgroundColor: '#28a745', height: 40, width: 300 }} onPress={handlesumbit}>SUBMIT</PrimaryButton>
+                </View>
 
             </ScrollView>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -273,10 +236,10 @@ const styles = StyleSheet.create({
 
     },
     button: {
-        borderRadius: 5,
+        borderRadius: 25,
         width: 200,
         height: 50,
-        backgroundColor: '#007bff',
+        backgroundColor: '#c86ce4',
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 20,
@@ -303,7 +266,7 @@ const styles = StyleSheet.create({
         margin: 12,
         borderWidth: 1,
         padding: 10,
-        borderRadius: 20,
+        borderRadius: 10,
         backgroundColor: 'white'
     },
     line: {
@@ -317,7 +280,7 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         fontWeight: 'bold',
         fontSize: 15,
-        color: 'white'
+        color: '#f5f3f2'
     },
 });
 
