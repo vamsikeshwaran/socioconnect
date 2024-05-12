@@ -49,7 +49,7 @@ const Connect = ({ route }) => {
 
     return (
         <LinearGradient colors={['#0c4cb4', '#c86ce4']} style={styles.container}>
-            <Text style={styles.header}>CONNECT</Text>
+            <Text style={styles.header}>SOCIOCONNECT</Text>
             <FlatList
                 data={messages}
                 renderItem={({ item }) => (
@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: 'bold',
         marginTop: 30,
+        marginBottom: 20
     },
     inputContainer: {
         flexDirection: 'row',
