@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
 import axios from 'axios';
-import { ScrollView } from 'react-native-gesture-handler';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const Leader = ({ title }) => {
     const [sus, setsus] = useState('');
@@ -18,17 +17,14 @@ const Leader = ({ title }) => {
     }, []);
 
     return (
-
         <View style={styles.container}>
-
-
-
-            <View style={styles.infoContainer}>
+            <LinearGradient colors={["#6495ED", "#4169E1"]} style={[styles.cardContainer, { width: 300, padding: 20, borderRadius: 20 }]}>
                 <Text style={styles.title}>{title}</Text>
-                <Text style={styles.label}>Sustainability Index:</Text>
-                <Text style={styles.value}>{sus}</Text>
-            </View>
-
+                <View style={styles.infoContainer}>
+                    <Text style={styles.label}>Sustainability Index:</Text>
+                    <Text style={styles.value}>{sus}</Text>
+                </View>
+            </LinearGradient>
         </View >
     );
 };
@@ -47,10 +43,8 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     cardContainer: {
-        borderRadius: 20,
-        padding: 20,
-        width: 300,
         alignItems: 'center',
+        backgroundColor: 'lightblue',
     },
     title: {
         fontSize: 20,
@@ -60,12 +54,13 @@ const styles = StyleSheet.create({
     },
     infoContainer: {
         alignItems: 'center',
-        backgroundColor: 'lightblue'
+        flexDirection: 'row',
+        marginTop: 10,
     },
     label: {
         fontWeight: 'bold',
-        color: '#FFA500',
-        marginBottom: 5,
+        color: 'white',
+        marginRight: 5,
     },
     value: {
         color: 'white',
