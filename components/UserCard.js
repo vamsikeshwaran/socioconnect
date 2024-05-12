@@ -26,7 +26,6 @@ const UserCard = ({ title, retail, equity, demo, abstract, info }) => {
                     <View style={styles.line} />
 
                 </LinearGradient>
-
                 <View style={styles.pageDivision} />
 
             </Pressable>
