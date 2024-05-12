@@ -24,6 +24,7 @@ const ProductScreen = ({ route }) => {
                     resizeMode="contain"
                     style={styles.imageBackground}
                     imageStyle={styles.imageStyle}
+
                 />
                 <LinearGradient colors={['white', 'white']} style={styles.linearGradient}>
                     <View style={styles.container}>
