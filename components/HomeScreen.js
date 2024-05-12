@@ -5,6 +5,8 @@ import { FontAwesome } from '@expo/vector-icons';
 import Card from '../ui/Card';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
+import { MaterialIcons } from '@expo/vector-icons';
+import LeaderBoard from './LeaderBoard';
 
 const HomeScreen = () => {
     const navigation = useNavigation();
@@ -40,7 +42,7 @@ const HomeScreen = () => {
         for (let i = 0; i < count && i < productInfo.length; i++) {
             generatedCards.push(
                 <Pressable key={i} onPress={() => navigation.navigate('Details', { id: i })}>
-                    <Card title={productInfo[i].Title} retail={productInfo[i].Retail} equity={productInfo[i].Equity} demo={productInfo[i].Demo} abstract={productInfo[i].Abstract} info={productInfo[i].Introduction} />
+                    <Card title={productInfo[i].Title} retail={productInfo[i].Retail} equity={productInfo[i].Equity} demo={productInfo[i].Demo} abstract={productInfo[i].Abstract} info={productInfo[i].Information} InvestedAmount={productInfo[i].InvestedAmount} />
                 </Pressable>
             );
         }
@@ -52,7 +54,7 @@ const HomeScreen = () => {
         <LinearGradient colors={["#0c4cb4", "#c86ce4"]} style={styles.container}>
             <View style={styles.textbox}>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Pressable style={styles.containers} onPress={() => navigation.navigate('Profile')}>
+                    <Pressable style={styles.containers} onPress={() => navigation.navigate('ProfileDashboard')}>
                         <Text style={styles.text}>V</Text>
                     </Pressable>
                     <View style={{ flexDirection: 'column', marginRight: 165 }}>
@@ -70,6 +72,9 @@ const HomeScreen = () => {
                     {cards}
                 </View>
             </ScrollView>
+            <Pressable style={styles.addButton} onPress={() => navigation.navigate('LeaderBoard')}>
+                <MaterialIcons name="leaderboard" size={24} color="black" />
+            </Pressable>
         </LinearGradient>
     );
 };
@@ -134,5 +139,17 @@ const styles = StyleSheet.create({
     },
     text: {
         fontWeight: 'bold',
-    }
+    },
+    addButton: {
+        position: 'absolute',
+        bottom: 20,
+        right: 20,
+        backgroundColor: 'grey',
+        borderRadius: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 50,
+        width: 50,
+    },
+
 });
