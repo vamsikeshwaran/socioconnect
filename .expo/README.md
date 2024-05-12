@@ -1,8 +1,53 @@
-> Why do I have a folder named ".expo" in my project?
-The ".expo" folder is created when an Expo project is started using "expo start" command.
-> What do the files contain?
-- "devices.json": contains information about devices that have recently opened this project. This is used to populate the "Development sessions" list in your development builds.
-- "settings.json": contains the server configuration that is used to serve the application manifest.
-> Should I commit the ".expo" folder?
-No, you should not share the ".expo" folder. It does not contain any information that is relevant for other developers working on the project, it is specific to your machine.
-Upon project creation, the ".expo" folder is already added to your ".gitignore" file.
+# Societal Impact Projects List
+
+## Introduction
+
+We’ve built an online platform that connects social impact projects with potential investors, promoting sustainability and change.
+
+# Photos of the app
+
+## Home Screen
+![Screenshot](images/im2.jpeg)
+
+## Login Page
+![Screenshot](images/im7.jpeg)
+
+## Profile Dashboard
+![Screenshot](images/im6.jpeg)
+
+## Chat Screen
+![Screenshot](images/im4.jpeg)
+
+## AI for marketting
+![Screenshot](images/im8.jpeg)
+
+## Upload page
+![Screenshot](images/im3.jpeg)
+
+# Prerequisites
+
+* Install react native
+* Install node
+* Initialize Mongo DB
+* Install Express
+* Use Iphone SE(3rd Generation Simulator)
+
+# Procedure to run this application
+
+1. Clone the repository
+```
+https://github.com/vamsikeshwaran/socioconnect.git
+```
+2. Move to socioconnect folder
+```
+cd socioconnect
+```
+3. Install dependencies
+```
+npm i
+```
+4. Start your application
+```
+npm start
+```
+
