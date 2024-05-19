@@ -1,4 +1,4 @@
-# Societal Impact Projects List
+# Socioconnect
 
 ## Introduction
 
